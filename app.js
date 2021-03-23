@@ -34,16 +34,18 @@ mongoose.connect(config.mongo.uri, {
     useCreateIndex: true,
     useUnifiedTopology: true,
 
+}, () => {
+    console.log("📀[mongo.uri]: connected to the database successfully")
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connection.on("open", err => {
-    if (err) console.log(chalk.red("Error connecting to database"));
-    console.log(chalk.green("connected to databse successfully"));
+// mongoose.connection.on("open", err => {
+//     if (err) console.log(chalk.red("Error connecting to database"));
+//     console.log(chalk.green("connected to databse successfully"));
 
-})
+// })
 
 app.use(logs("dev"));
 
