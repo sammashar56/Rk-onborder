@@ -33,9 +33,7 @@ mongoose.connect(config.mongo.uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
-}, () => {
-    console.log('database imework ')
+
 });
 
 app.use(bodyParser.json());
