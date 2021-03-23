@@ -34,6 +34,8 @@ mongoose.connect(config.mongo.uri, {
     useCreateIndex: true,
     useUnifiedTopology: true,
     useFindAndModify: false
+}, () => {
+    console.log('database imework ')
 });
 
 app.use(bodyParser.json());
