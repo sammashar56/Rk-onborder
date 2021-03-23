@@ -32,7 +32,6 @@ app.use(requestIP.mw());
 mongoose.connect(config.mongo.uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology:true
 });
 
 app.use(bodyParser.json());
