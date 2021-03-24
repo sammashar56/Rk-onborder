@@ -32,10 +32,7 @@ app.use(requestIP.mw());
 mongoose.connect(config.mongo.uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true,
-
-}, () => {
-    console.log("📀[mongo.uri]: connected to the database successfully")
+    useUnifiedTopology:true
 });
 
 app.use(bodyParser.json());
