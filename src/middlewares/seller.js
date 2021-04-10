@@ -55,11 +55,6 @@ export const fetchSpecificSellers = (req, res, next) => {
 };
 
 export const deleteSeller = (req, res, next) => {
-    // const data = {
-    //     user: req.user._id,
-    //     ...req.body
-    // };
-    console.log(req.params.seller_id);
     removeSeller( req.params.seller_id)
     .then(Res => {
         res.status(201).json(Res);
@@ -71,7 +66,7 @@ export const deleteSeller = (req, res, next) => {
 
 //fetching a specific seller by id
 export const fetchSpecificSeller = (req, res, next) => {
-    getsingleSeller(req.seller._id)
+    getsingleSeller(req.params.seller_id)
     .then(Response => {
         res.status(200).json({ ...Response});
     })

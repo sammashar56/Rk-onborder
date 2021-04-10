@@ -82,17 +82,9 @@ export const getSpecificSeller = async(userId) => {
 
 
 export const removeSeller = async(seller_id) => {
-    const user = await User.findById(data.user);
-    console.log(user);
-    if (user) {
         const seller = await Seller.findOne({_id: seller_id})
-        console.log(seller);
         if (seller) {
-            // Object.assign(seller, {
-            //     status: data.status || seller.status,
-            //     Ideal_for_roko: data.Ideal_for_roko || seller.Ideal_for_roko,
-            //     brand_focused: data.brand_focused || seller.brand_focused
-            // });
+            
             await seller.remove();
             return {
                 message: "seller deleted"
@@ -104,27 +96,18 @@ export const removeSeller = async(seller_id) => {
                 message: "seller not found"
             }
         }
-    }else{
-        throw {
-            status: 404,
-            message: "user not found"
-        }
-    }
 }
-
 //fetching a specific seller by id
 export const getsingleSeller = async (seller_id) => {
-    const user = await User.findById(data.user);
-    console.log(user);
-    if (user) {
-        const seller = await Seller.findById({seller_id})
-
-        return seller
-    }
-    else{
-        throw {
-            status: 404,
-            message:"issue"
+  
+        const seller = await Seller.findOne({_id :seller_id})
+        if (seller) {
+            return seller
+        }else {
+            throw{
+                status: 404,
+                message: "seller not found"
+            }
         }
-    }
+            
 }

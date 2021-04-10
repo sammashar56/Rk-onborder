@@ -1,7 +1,7 @@
 import express from 'express';
 import Routes from "../helpers/route";
 
-import {editSeller, addSeller, fetchAllsellers, fetchSpecificSellers, deleteSeller} from "../middlewares/seller";
+import {editSeller, addSeller, fetchAllsellers, fetchSpecificSellers, deleteSeller, fetchSpecificSeller} from "../middlewares/seller";
 
 import routeprotector from "../middlewares/routeprotection";
   
@@ -23,6 +23,6 @@ api.get(Routes.onborder.all, routeprotector, fetchSpecificSellers);
 api.delete(Routes.onborder.update, routeprotector, deleteSeller)
 
 //getting a specific seller
-api.get(Routes.onborder.update, routeprotector,)
+api.get(Routes.onborder.update, routeprotector, fetchSpecificSeller)
 
 export default api;
