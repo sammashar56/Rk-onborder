@@ -6,7 +6,7 @@ export default {
     },
     onborder: {
         all: "/onborder",
-        update: "/seller/:seller",
+        update: "/sellers/:seller_id",
         add: "/new",
         addFeed: "newfeedback",
         

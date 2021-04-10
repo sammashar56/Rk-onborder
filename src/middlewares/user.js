@@ -9,7 +9,7 @@ export const registerUser = (req,res, next) => {
 
     createUser(data) 
     .then(response => {
-        res.status(201).json({
+        res.status(201).json({ 
             message: "Registration Successful",
             user: response  
         });

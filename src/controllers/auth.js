@@ -22,7 +22,7 @@ export const createUser = async userParam => {
     } else if (!valid.isLength(userParam.password, { min:6, max: 30})) {
         throw {
             status: 400,
-            message: "password should be more than six characters"
+            message: "password six characters"
         };
     } else if (!valid.equals (userParam.password, userParam.confirm)) {
         throw { status: 400, message: "passwords do not match"};
@@ -51,7 +51,7 @@ export const loginUser = async userParam => {
     } else if (!valid.isLength(userParam.password, {min: 6, max: 30})) {
         throw {
             status: 400,
-            message: "password should be more than six characters"
+            message: "password is characters"
         };
     } else {
         const user = await User.findOne({ email: userParam.email});

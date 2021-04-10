@@ -11,7 +11,8 @@ export const newSeller = async (data) => {
                 no_of_posts: data.no_of_posts,
                 price_range: data.price_range,
                 status: data.status,
-                level:data.level
+                level:data.level,
+                user: data.user
                 
              })
              await Newseller.save()
@@ -29,7 +30,7 @@ export const newSeller = async (data) => {
         }
 }
 
-export const getAllseller = async (data) => {
+export const getAllsellers = async (data) => {
     const sellers = await Seller.find();
     return {
         sellers
@@ -38,13 +39,14 @@ export const getAllseller = async (data) => {
 
 export const updateSeller = async( data, seller_id) => {
     const user = await User.findById(data.user);
-
+    
     if (user) {
-        const seller = await Seller.findOne({_id: user._id})
-
+        const seller = await Seller.findOne({_id: seller_id})
         if (seller) {
             Object.assign(seller, {
-                status: data.status || seller.status
+                status: data.status || seller.status,
+                Ideal_for_roko: data.Ideal_for_roko || seller.Ideal_for_roko,
+                brand_focused: data.brand_focused || seller.brand_focused
             });
             await seller.save();
             return {
@@ -55,16 +57,74 @@ export const updateSeller = async( data, seller_id) => {
         else {
             throw {
                 status: 404,
-                message: "user not found"
+                message: "seller not found"
             }
+        }
+    }else{
+        throw {
+            status: 404,
+            message: "user not found"
         }
     }
 }
 
+//fetchhes sellers created by a certain user
 export const getSpecificSeller = async(userId) => {
-    const seller = await Seller.find({user : userId})
+    const sellers = await Seller.find({user : userId})  
+    if (sellers === 0) {
+        return "no sellers"
+    }
+    else {
+        return sellers
+    }
+    
+}
 
-    return {
-        seller
+
+export const removeSeller = async(seller_id) => {
+    const user = await User.findById(data.user);
+    console.log(user);
+    if (user) {
+        const seller = await Seller.findOne({_id: seller_id})
+        console.log(seller);
+        if (seller) {
+            // Object.assign(seller, {
+            //     status: data.status || seller.status,
+            //     Ideal_for_roko: data.Ideal_for_roko || seller.Ideal_for_roko,
+            //     brand_focused: data.brand_focused || seller.brand_focused
+            // });
+            await seller.remove();
+            return {
+                message: "seller deleted"
+            };
+        }
+        else {
+            throw {
+                status: 404,
+                message: "seller not found"
+            }
+        }
+    }else{
+        throw {
+            status: 404,
+            message: "user not found"
+        }
+    }
+}
+
+//fetching a specific seller by id
+export const getsingleSeller = async (seller_id) => {
+    const user = await User.findById(data.user);
+    console.log(user);
+    if (user) {
+        const seller = await Seller.findById({seller_id})
+
+        return seller
+    }
+    else{
+        throw {
+            status: 404,
+            message:"issue"
+        }
     }
 }
