@@ -55,12 +55,12 @@ app.use(Routes.root, authApi);
 app.use(Routes.root, thrifter);
 
 
-app.set("port", process.env.port || 3500)
+app.set("PORT", process.env.PORT || 3500 )
 
 
-app.listen(app.get("port"), err => {
+app.listen(app.get("PORT"), err => {
     if (err) console.log("server stopped due to " + err.message);
-    console.log(chalk.green("server is running in port "+ app.get("port")));
+    console.log(chalk.green("server is running in PORT "+ app.get("PORT")));
 
 });
 

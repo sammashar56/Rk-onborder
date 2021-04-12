@@ -71,8 +71,8 @@ export const updateSeller = async( data, seller_id) => {
 //fetchhes sellers created by a certain user
 export const getSpecificSeller = async(userId) => {
     const sellers = await Seller.find({user : userId})  
-    if (sellers === 0) {
-        return "no sellers"
+    if (sellers.length === 0) {
+        return "no sellers create one"
     }
     else {
         return sellers
@@ -101,13 +101,9 @@ export const removeSeller = async(seller_id) => {
 export const getsingleSeller = async (seller_id) => {
   
         const seller = await Seller.findOne({_id :seller_id})
-        if (seller) {
-            return seller
-        }else {
-            throw{
-                status: 404,
-                message: "seller not found"
-            }
+        // if (seller) {
+            return{ 
+                seller : { ...seller._doc}
         }
-            
+       
 }
