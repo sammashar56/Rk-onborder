@@ -7,7 +7,7 @@ export const newSeller = async (data) => {
             const Newseller = new Seller({
                 shopName: data.shopName,
                 no_of_followers: data.no_of_followers,
-                category:data.category,
+                category: data.category,
                 no_of_posts: data.no_of_posts,
                 price_range: data.price_range,
                 status: data.status,
@@ -30,7 +30,7 @@ export const newSeller = async (data) => {
         }
 }
 
-export const getAllsellers = async (data) => {
+export const getAllsellers = async () => {
     const sellers = await Seller.find();
     return {
         sellers
@@ -45,6 +45,8 @@ export const updateSeller = async( data, seller_id) => {
         if (seller) {
             Object.assign(seller, {
                 status: data.status || seller.status,
+                category: data.category || seller.category,
+                level: data.level || seller.level,
                 Ideal_for_roko: data.Ideal_for_roko || seller.Ideal_for_roko,
                 brand_focused: data.brand_focused || seller.brand_focused
             });
