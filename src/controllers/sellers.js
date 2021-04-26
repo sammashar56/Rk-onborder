@@ -10,17 +10,15 @@ export const newSeller = async (data) => {
                 category: data.category,
                 no_of_posts: data.no_of_posts,
                 price_range: data.price_range,
-                status: data.status,
+                status: data.status, 
                 level:data.level,
-                user: data.user
-                
+                user: data.user   
              })
              await Newseller.save()
-             return {
+             return { 
                  message: "seller created",
                  Newseller
              }
-
         }
         else {
             throw{

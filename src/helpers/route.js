@@ -8,7 +8,7 @@ export default {
         all: "/onborder",
         update: "/sellers/:seller_id",
         add: "/new",
-        addFeed: "newfeedback",
-        
-    }
+        addfeed: "/newfeedback",
+    },
+    
 }

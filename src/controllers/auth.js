@@ -9,7 +9,7 @@ export const createUser = async userParam => {
         throw {
             status: 400,
             message: "provide password"
-        };
+        }; 
     }
     else if(!valid.isEmail(userParam.email)) {
         throw {

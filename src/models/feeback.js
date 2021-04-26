@@ -8,7 +8,7 @@ const feedbackSchema = Schema(
                type: Schema.Types.ObjectId,
                ref: "Seller"
           },
-          Feedback: {
+          feedback: {
                type: String,
                required: true
           },

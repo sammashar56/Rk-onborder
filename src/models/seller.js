@@ -37,7 +37,7 @@ const sellerSchema = Schema(
           status: {
                type: Array,
                required: false,
-               default : ['Onbording']
+               default : 'Onbording'
           },
           level: {
                type: String,
