@@ -29,7 +29,8 @@ export const newSeller = async (data) => {
 }
 
 export const getAllsellers = async () => {
-    const sellers = await Seller.find();
+    const sellers = await Seller.find()
+    .sort({createdAt: -1})
     return {
         sellers
     };
@@ -71,7 +72,7 @@ export const updateSeller = async( data, seller_id) => {
 //fetchhes sellers created by a certain user
 export const getSpecificSeller = async(userId) => {
     const sellers = await Seller.find({user : userId})  
-    if (sellers.length === 0) {
+    if (!sellers) {
         return "no sellers create one"
     }
     else {

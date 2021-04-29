@@ -7,8 +7,8 @@ export const addFeedback = (req, res, next) => {
     };
     console.log(data);
      newFeedback(data)
-    .then(res => {
-        res.status(201).json(res);
+    .then(Response => {
+        res.status(201).json(Response);
     })
     .catch(err => {
         res.status(err.status || 500).json({message: err.message});
