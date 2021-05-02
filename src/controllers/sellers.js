@@ -4,21 +4,29 @@ import User from "../models/user";
 export const newSeller = async (data) => {
     const user = await User.findById(data.user);
         if(user) {
-            const Newseller = new Seller({
-                shopName: data.shopName,
-                no_of_followers: data.no_of_followers,
-                category: data.category,
-                no_of_posts: data.no_of_posts,
-                price_range: data.price_range,
-                status: data.status, 
-                level:data.level,
-                user: data.user   
-             })
-             await Newseller.save()
-             return { 
-                 message: "seller created",
-                 Newseller
-             }
+            const seller = await Seller.findOne({shopName:data.shopName})
+            if (!seller){
+                    const Newseller = new Seller({
+                        shopName: data.shopName,
+                        no_of_followers: data.no_of_followers,
+                        category: data.category,
+                        no_of_posts: data.no_of_posts,
+                        price_range: data.price_range,
+                        status: data.status, 
+                        level:data.level,
+                        user: data.user   
+                    })
+                    await Newseller.save()
+                    return { 
+                        message: "seller created",
+                        Newseller
+                    }
+                }
+                else {
+                    throw{
+                        message: "seller already exists"
+                    }
+                }
         }
         else {
             throw{
